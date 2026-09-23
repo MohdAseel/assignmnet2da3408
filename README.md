@@ -172,22 +172,3 @@ kubectl rollout history deployment/spam-api-deployment
 ```
 
 A Deployment replaces pods gradually while maintaining ready replicas. A Job is different: it runs finite completions and stops, so it does not provide continuous serving, replacement replicas, or rolling updates.
-
-## Evidence checklist
-
-Before submission, collect evidence for:
-
-- Dataset row and label counts.
-- Naive and multi-stage image sizes and the percentage reduction.
-- Successful `/healthz` and `/predict` responses.
-- Compose status, API logs, and miss-versus-hit timings.
-- Four concurrent Indexed Job pods and all eight shard counts.
-- Deployment readiness and Service output.
-- A recreated pod after manual deletion.
-- Successful rollout status, rollout history, and the new health version.
-
-Do not report measured sizes, timings, pod states, or rollout results until they have been captured from the local Docker/Kubernetes environment.
-
-## Current repository status
-
-The repository currently contains the assignment materials, shard generator, generated shards, Compose file, and Kubernetes manifests. The `app/` directory is empty in the checked-in workspace, so the API source, model, Dockerfiles, validator image, and runtime evidence must be added before the full workflow can run. In particular, the current Compose file references `app/Dockerfile.multistage`, and the Indexed Job manifest still needs the validator image, shard packaging, completion-index environment variable, and validator command wired in.
